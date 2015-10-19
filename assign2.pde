@@ -4,7 +4,7 @@ PImage enemy,fighter,treasure;
 //background
 PImage bg1,bg2,hp,bg3,start1,start2,end1,end2;
 
-int treasureX,treasureY,enemy1=0,enemy2,bg1x=0,hphave,fighterX,fighterY,i;
+int treasureX,treasureY,enemyX=0,enemyY,bg1x=0,hphave,fighterX,fighterY,i;
 
 boolean go_left  = false;
 boolean go_up    = false;
@@ -12,6 +12,7 @@ boolean go_down  = false;
 boolean go_right = false;
 boolean start    = true;
 boolean end      = false;
+
 void setup () {
   size(640, 480) ;
   fighterX=width-51;
@@ -31,58 +32,64 @@ void setup () {
   //random
   treasureY=floor(random(41,439));
   treasureX=floor(random(41,599));
-  enemy2=floor(random(0,419)); 
+  enemyY=floor(random(0,419)); 
+  
   hphave=200;
 }
 
 void draw() {
+  
   if(start){
   image(start2,0,0);
   if((mouseX>206&&mouseX<446)&&(mouseY>306&&mouseY<408)){
   image(start1,0,0);
   }
-  //y=307-409
-  //x=277=447
   }
+  
   else if(end){
   image(end2,0,0);
   if((mouseX>206&&mouseX<446)&&(mouseY>306&&mouseY<408)){
   image(end1,0,0);
   }
-  //y=307-409
-  //x=277=447
   }
+  //game
   else{
   bg1x+=2;
   bg1x=bg1x%1280;
   image(bg1,bg1x,0);
   image(bg2,bg1x-640,0);
   image(bg3,bg1x-1280,0);
-  enemy1+=3;
-  if(enemy1>640){
-  enemy1=enemy1%640;
-  enemy2=floor(random(0,419)); 
+  
+  enemyX+=3;
+  if(enemyX>640){
+  enemyX=enemyX%640;
+  enemyY=floor(random(0,419)); 
   }
-  if(enemy2>fighterY)
+  if(enemyY>fighterY)
   i=1;
-  if(enemy2<fighterY)
+  if(enemyY<fighterY)
   i=2;
    
-   switch(i){
+  switch(i){
   case 1:
-  if(enemy1<fighterX)
-  enemy2-=2;
-  else
-  enemy2+=2;
+  if(enemyX<fighterX)
+  enemyY-=2;
+  else{
+  enemyY+=2;
+  enemyX+=5;
+  }
   break;
   case 2:
-  if(enemy1<fighterX)
-  enemy2+=2;
-  else
-  enemy2-=2;
+  if(enemyX<fighterX)
+  enemyY+=2;
+  else{
+  enemyY-=2;
+  enemyX+=5;
+  }
   break;
    }
-  image(enemy,enemy1,enemy2);
+   
+  image(enemy,enemyX,enemyY);
   image(fighter,fighterX,fighterY);
   fill(255,0,0);
   rect(10,0,hphave,31);
@@ -114,17 +121,17 @@ void draw() {
     else
     fighterX=0;
   //catch enemy
-  if((enemy1+61 >fighterX&&enemy1+61<=fighterX+51)&&(enemy2>=fighterY&&enemy2<=fighterY+51)){
+  if((enemyX+61 >fighterX&&enemyX+61<=fighterX+51)&&(enemyY>=fighterY&&enemyY<=fighterY+51)){
     hphave-=40;
-    enemy2=floor(random(0,419));
-    enemy1=0;
+    enemyY=floor(random(0,419));
+    enemyX=0;
   }
-  else if((enemy1+61 >fighterX&&enemy1+61<=fighterX+51)&&
-  (enemy2+61>=fighterY&&enemy2+61<=fighterY+51)){
+  else if((enemyX+61 >fighterX&&enemyX+61<=fighterX+51)&&
+  (enemyY+61>=fighterY&&enemyY+61<=fighterY+51)){
    if(hphave<200)
 hphave-=40;
-    enemy2=floor(random(0,419));
-    enemy1=0; 
+    enemyY=floor(random(0,419));
+    enemyX=0; 
   }
   
   //catch treasure
