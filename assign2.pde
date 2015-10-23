@@ -96,6 +96,7 @@ void draw() {
   image(hp,0,0);
   image(treasure,treasureX,treasureY);
   }
+  
   if((fighterX<=width-51&&fighterX>=0)){
   if((fighterY<=height-51&&fighterY>=0)){
   if(go_up){
@@ -126,10 +127,8 @@ void draw() {
     enemyY=floor(random(0,419));
     enemyX=0;
   }
-  else if((enemyX+61 >fighterX&&enemyX+61<=fighterX+51)&&
-  (enemyY+61>=fighterY&&enemyY+61<=fighterY+51)){
-   if(hphave<200)
-hphave-=40;
+  else if((enemyX+61 >fighterX&&enemyX+61<=fighterX+51)&&(enemyY+61>=fighterY&&enemyY+61<=fighterY+51)){
+    hphave-=40;
     enemyY=floor(random(0,419));
     enemyX=0; 
   }
@@ -138,7 +137,7 @@ hphave-=40;
    if((treasureX+41 >fighterX&&treasureX+41<=fighterX+51)&&(treasureY>=fighterY&&treasureY<=fighterY+51)){
     if(hphave<200)
      hphave+=40;
-    treasureY=floor(random(41,439));
+  treasureY=floor(random(41,439));
   treasureX=floor(random(41,599));
   }
   else if((treasureX+41 >fighterX&&treasureX+41<=fighterX+51)&&
