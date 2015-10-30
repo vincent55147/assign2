@@ -34,7 +34,7 @@ void setup () {
   treasureX=floor(random(41,599));
   enemyY=floor(random(0,419)); 
   
-  hphave=200;
+  hphave=40;
 }
 
 void draw() {
@@ -136,34 +136,34 @@ void draw() {
   //catch treasure
    if((treasureX+41 >fighterX&&treasureX+41<=fighterX+51)&&(treasureY>=fighterY&&treasureY<=fighterY+51)){
     if(hphave<200)
-     hphave+=40;
+     hphave+=20;
   treasureY=floor(random(41,439));
   treasureX=floor(random(41,599));
   }
   else if((treasureX+41 >fighterX&&treasureX+41<=fighterX+51)&&
   (treasureY+41>=fighterY&&treasureY+41<=fighterY+51)){
    if(hphave<200)
-    hphave+=40;
+    hphave+=20;
     treasureY=floor(random(41,439));
   treasureX=floor(random(41,599));
   }
   else if((treasureX+41 >fighterX+51&&treasureX<=fighterX+51)&&
   (treasureY+41>=fighterY+51&&treasureY+41<=fighterY+51)){
    if(hphave<200)
-    hphave+=40;
+    hphave+=20;
     treasureY=floor(random(41,439));
   treasureX=floor(random(41,599));
   }
     else if((treasureX+41 >fighterX+51&&treasureX<=fighterX+51)&&
   (treasureY+41>=fighterY+51&&treasureY<=fighterY+51)){
    if(hphave<200)
-    hphave+=40;
+    hphave+=20;
     treasureY=floor(random(41,439));
   treasureX=floor(random(41,599));
   }
   
   
-  if(hphave==0)
+  if(hphave<=0)
    end=true; 
 }
 
@@ -176,7 +176,7 @@ void mousePressed(){
    if(end){
     if((mouseX>206&&mouseX<446)&&(mouseY>306&&mouseY<408))
    end = false;
-   hphave=200;
+   hphave=40;
    fighterX=width-51;
    fighterY=height/2;
    treasureY=floor(random(41,439));
